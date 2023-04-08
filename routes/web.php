@@ -18,6 +18,6 @@ Route::get('/', function () {
 });
 
 // Disable the registration
-Auth::routes(['register' => false]);
+Auth::routes(['register' => false, 'reset' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
