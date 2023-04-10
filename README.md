@@ -15,6 +15,14 @@ Install all the dependencies using composer
 
     composer install
 
+Also run 
+
+    npm install
+    
+followed by
+
+    npm run dev
+
 Copy the example env file and make the required configuration changes in the .env file
 
     cp .env.example .env
@@ -31,6 +39,8 @@ Run the database migrations and seeder (**Set the database connection in .env be
     git clone git@github.com:ArpitYadav/book-store.git
     cd book-store
     composer install
+    npm install
+    npm run dev
     cp .env.example .env
     php artisan key:generate
 
