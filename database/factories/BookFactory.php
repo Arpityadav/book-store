@@ -43,7 +43,7 @@ class BookFactory extends Factory
             'description' => fake()->paragraph(40),
             'isbn' => fake()->numerify('#############'),
             'image' => fake()->imageUrl(),
-            'published' => fake()->dateTimeThisDecade(),
+            'published' => fake()->date(),
             'publisher' => fake()->name()
         ];
     }

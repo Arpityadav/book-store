@@ -15,12 +15,20 @@ import { createApp } from 'vue';
 
 const app = createApp({});
 
-import ExampleComponent from './components/ExampleComponent.vue';
-app.component('example-component', ExampleComponent);
+import Home from './components/books/Home.vue';
+app.component('books-home', Home);
 
 import Index from './components/books/Index.vue';
 app.component('books-index', Index);
 
+import Show from './components/books/Show.vue';
+app.component('books-show', Show);
+
+import Create from './components/books/Create.vue';
+app.component('books-create', Create);
+
+import Edit from './components/books/Edit.vue';
+app.component('books-edit', Edit);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -38,5 +46,8 @@ app.component('books-index', Index);
  * an "id" attribute of "app". This element is included with the "auth"
  * scaffolding. Otherwise, you will need to add an element yourself.
  */
+
+
+app.config.globalProperties.window = window
 
 app.mount('#app');

@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "093a91f2-a0ab-4c10-8a8f-6bb9a7977bf0",
+		"name": "boostore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Elasticsearch",
+			"item": [
+				{
+					"name": "Index Save",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"settings\": {\n        \"index\": {\n            \"analysis\": {\n                \"filter\": {\n                    \"words_splitter\": {\n                        \"type\": \"word_delimiter\",\n                        \"preserve_original\": \"true\",\n                        \"catenate.all\": \"true\"\n                    }\n                },\n                \"analyzer\": {\n                    \"default\": {\n                        \"type\": \"custom\",\n                        \"tokenizer\": \"standard\",\n                        \"chor_filter\": [\n                            \"html_strip\"\n                        ],\n                        \"filter\": [\n                            \"lowercase\",\n                            \"words_splitter\"\n                        ]\n                    }\n                }\n            }\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://bookstore.test:9200/books",
+							"protocol": "http",
+							"host": [
+								"bookstore",
+								"test"
+							],
+							"port": "9200",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Index Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"settings\": {\n        \"index\": {\n            \"analysis\": {\n                \"filter\": {\n                    \"words_splitter\": {\n                        \"type\": \"word_delimiter\",\n                        \"preserve_original\": \"true\",\n                        \"catenate.all\": \"true\"\n                    }\n                },\n                \"analyzer\": {\n                    \"default\": {\n                        \"type\": \"custom\",\n                        \"tokenizer\": \"standard\",\n                        \"chor_filter\": [\n                            \"html_strip\"\n                        ],\n                        \"filter\": [\n                            \"lowercase\",\n                            \"words_splitter\"\n                        ]\n                    }\n                }\n            }\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://bookstore.test:9200/books",
+							"protocol": "http",
+							"host": [
+								"bookstore",
+								"test"
+							],
+							"port": "9200",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Index",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"from\": 0,\n    \"size\": 5000,\n    \"query\": {\n        \"multi_match\": {\n            \"query\": \"Updated\",\n            \"fields\": [\"title\"],\n            \"type\": \"phrase_prefix\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://bookstore.test:9200/books/_search",
+							"protocol": "http",
+							"host": [
+								"bookstore",
+								"test"
+							],
+							"port": "9200",
+							"path": [
+								"books",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Search via Eloquent Builder",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://bookstore.test?search=a&from_date=2019-05-08T22:15&genres=Memoir,Biography,Children%27s%20literature,Young%20adult&page=1",
+					"protocol": "http",
+					"host": [
+						"bookstore",
+						"test"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "a"
+						},
+						{
+							"key": "from_date",
+							"value": "2019-05-08T22:15"
+						},
+						{
+							"key": "to_date",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "genres",
+							"value": "Memoir,Biography,Children%27s%20literature,Young%20adult"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search via Elasticsearch",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('genre');
             $table->text('description');
             $table->unsignedBigInteger('isbn');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->dateTime('published');
             $table->string('publisher');
             $table->timestamps();
